@@ -15,15 +15,16 @@
 <link rel="stylesheet" href="../css/font.css">
 <link rel="stylesheet" href="../css/xadmin.css">
 <link rel="stylesheet" href="../layui/css/layui.css" media="all">
-<script type="text/javascript"
-	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="../lib/layui/layui.js"
-	charset="utf-8"></script>
+<link rel="stylesheet" href="../fileupload/css/font-awesome.min.css">
+
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/xadmin.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="../ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="../ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="../fileupload/js/piclist.js"></script>
+
+
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="utf-8"
@@ -35,11 +36,11 @@
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script type="text/javascript">
-    	var login = "${requestScope.login}"+"d";
-    	if(login == "logind"){
-    		window.parent.parent.location.href="../login.jsp";
-    	}
-    </script>
+	var login = "${requestScope.login}" + "d";
+	if (login == "logind") {
+		window.parent.parent.location.href = "../login.jsp";
+	}
+</script>
 
 
 
@@ -190,16 +191,18 @@
 				class="x-red"></span>图片
 			</label>
 			<div class="layui-upload">
-			  <blockquote style="margin-top: 10px;height:92px;width:70%">
-			  <div class="layui-upload-list" id="demo2">
-			  <c:if test="${info.pics!=null}">
-					<img src="${info.pics}" class="layui-upload-img" style="width:92px;height:92px"/>
-					</c:if>
-			  
-			  </div>
-			 </blockquote>
-			 <button class="layui-btn" id="test2" type="button" style="margin:10px 110px">图片上传</button>
-			  <input type="hidden" id="imgurls" name="pics" value="${info.pics}">
+				<blockquote style="margin-top: 10px; height: 92px; width: 70%">
+				
+				<div class="picList" name="pics" width="300" height="200+" rows="2"
+						cols="5">
+						<c:forEach items="${requestScope.info.pics}" var="p">
+							<item url="${p}">
+						</c:forEach>
+					</div>
+				</blockquote>
+				<button class="layui-btn" id="test2" type="button"
+					style="margin: 10px 110px">上传</button>
+				<input type="hidden" id="imgurls" name="pics" value="${requestScope.info.pics}">
 			</div>
 		</div>
 
@@ -208,7 +211,8 @@
 				class="x-red"></span>备注
 			</label>
 			<div class="layui-input-inline">
-				<input type="text" name="comments" value="${requestScope.info.comments}" class="layui-input">
+				<input type="text" name="comments"
+					value="${requestScope.info.comments}" class="layui-input">
 			</div>
 		</div>
 
@@ -219,56 +223,55 @@
 		</form>
 	</div>
 	<script>
-	//ueditor 编辑器
-	 var ue = UE.getEditor('editor');
-	 //$(function(){
-	       // var content ="789";
-	        //ue.setContent(content);
-	   // });
-	
-	//图片上传
-		layui.use('upload', function(){
-	  	var $ = layui.jquery
-	  	,upload = layui.upload;
-		
-	  //普通图片上传
-	  var uploadInst = upload.render({
-	    elem: '#test2'
-	    ,url: 'upload'
-	    ,before: function(obj){
-	      obj.preview(function(index, file, json){
-	    	  $('#demo2').append('<img src="'+ json +'" alt="'+ file.name +'" class="layui-upload-img" style="width:92px;height:92px">')
-
-	      });
-	    }
-	    ,done: function(res){
-	    	$("#imgurls").val(res.url);
-	    }
-	    ,error: function(){
-	      //演示失败状态，并实现重传
-	      var demoText = $('#demoText');
-	      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-	      demoText.find('.demo-reload').on('click', function(){
-	        uploadInst.upload();
-	      });
-	    }
-	  });
+		//ueditor 编辑器
+		var ue = UE.getEditor('editor');
+		$(function(){
+			var content ="789";
+			ue.setContent(content);
 		});
 
-	 //监听提交
-    function edit() {
-   	  $.post($(".layui-form").attr("action"),$(".layui-form").serialize(),function(json){
-   			if(json.status>0){
-   				var index = parent.layer.getFrameIndex(window.name);  
-   			 	parent.layer.close(index);
-   				parent.fresha();
-   			}else{
-   				alert(json.text);
-   				var index=parent.layer.getFrameIndex(window.name);
-   				parent.layer.close(index);
-   			}
-   		},"json");
-     }
+		//图片上传
+		layui.use([ 'form', 'layer' ], function() {
+			$ = layui.jquery;
+			var form = layui.form, layer = layui.layer;
+			//监听提交
+			form.on('submit(add)', function(data) {
+				console.log(data);
+				//发异步，把数据提交给php
+				$.post("save", $(".layui-form").serialize(), function(date) {
+					if (date > 0) {
+						layer.alert("保存成功", {
+							icon : 6
+						},
+								function() {
+									// 获得frame索引
+									var index = parent.layer
+											.getFrameIndex(window.name);
+									window.parent.location.reload();
+									//关闭当前frame
+									parent.layer.close(index);
+								});
+					}
+				}, "json");
+				return false;
+			});
+		});
+
+		//监听提交
+		function edit() {
+			$.post($(".layui-form").attr("action"), $(".layui-form")
+					.serialize(), function(json) {
+				if (json.status > 0) {
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+					parent.fresha();
+				} else {
+					alert(json.text);
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+				}
+			}, "json");
+		}
 	</script>
 </body>
 

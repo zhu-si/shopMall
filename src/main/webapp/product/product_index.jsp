@@ -92,7 +92,7 @@
 			<c:if test="${product.status==0}"><td>未出售</td></c:if>
 			<c:if test="${product.status==1}"><td>销售中</td></c:if>
 			<c:if test="${product.status==2}"><td>已售罄</td></c:if>
-            <td><img alt="" src="${product.pics }"></td>
+            <td><img alt="" src="${product.pic}" width="60" height="90"></td>
             <td>${product.comments}</td>
             <td class="td-manage">
               <a title="修改" onclick="javascript:openwin(${product.id});"><i class="layui-icon">&#xe642;</i></a>

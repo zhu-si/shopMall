@@ -75,7 +75,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="user_c/def">
+                        <a _href="../user_c/def">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表</cite>
                             
@@ -129,7 +129,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="order_c/def">
+                        <a _href="../order_c/def">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>
@@ -144,7 +144,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="type_c/def">
+                        <a _href="../type_c/def">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>分类列表</cite>
                         </a>
@@ -159,7 +159,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="product_c/def">
+                        <a _href="../product_c/def">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite>
                         </a>
@@ -189,7 +189,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="operator_c/def">
+                        <a _href="../operator_c/def">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite>
                         </a>

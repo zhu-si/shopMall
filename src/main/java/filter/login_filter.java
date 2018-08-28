@@ -70,8 +70,6 @@ private boolean check(String path) {
 	String []remove = new String[0];
 	public void init(FilterConfig init) throws ServletException {
 		remove=init.getInitParameter("remove").split(",");
-		
-		
 	}
 
 }

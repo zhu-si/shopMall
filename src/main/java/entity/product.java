@@ -17,6 +17,20 @@ public class product {
 	int status;			//״̬
 	String pics;		//ͼƬ
 	String comments;	//��ע
+	
+	public String[] getPiclist() {
+		if(pics.length()<5)return new String[0];
+		return pics.split(",");
+	}
+	public String getPic() {
+		if(pics==null) return "";
+		if(pics.length()<5)return "";
+		String [] pic=pics.split(",");
+		if(pic.length>0)
+		return pic[0];
+		else return "";
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -98,6 +112,9 @@ public class product {
 	public String getPics() {
 		return pics;
 	}
+	
+	
+	
 	public void setPics(String pics) {
 		this.pics = pics;
 	}
