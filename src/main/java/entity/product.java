@@ -19,7 +19,7 @@ public class product {
 	String comments;	//±¸×¢
 	
 	public String[] getPiclist() {
-		if(pics.length()<5)return new String[0];
+		if(pics==null||pics.length()<5)return new String[0];
 		return pics.split(",");
 	}
 	public String getPic() {

@@ -8,8 +8,9 @@
     "imageCompressEnable": true, /* 鏄惁鍘嬬缉鍥剧墖,榛樿鏄痶rue */
     "imageCompressBorder": 1600, /* 鍥剧墖鍘嬬缉鏈�闀胯竟闄愬埗 */
     "imageInsertAlign": "none", /* 鎻掑叆鐨勫浘鐗囨诞鍔ㄦ柟寮� */
-    "imageUrlPrefix": "http://localhost:8080/shopMall", /* 鍥剧墖璁块棶璺緞鍓嶇紑 */
-    "imagePathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 涓婁紶淇濆瓨璺緞,鍙互鑷畾涔変繚瀛樿矾寰勫拰鏂囦欢鍚嶆牸寮� */
+     "imageUrlPrefix": "http://localhost:8080/", /* 图片访问路径前缀 */
+    "imagePathFormat": "../ueditorUpLoad/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+
                                 /* {filename} 浼氭浛鎹㈡垚鍘熸枃浠跺悕,閰嶇疆杩欓」闇�瑕佹敞鎰忎腑鏂囦贡鐮侀棶棰� */
                                 /* {rand:6} 浼氭浛鎹㈡垚闅忔満鏁�,鍚庨潰鐨勬暟瀛楁槸闅忔満鏁扮殑浣嶆暟 */
                                 /* {time} 浼氭浛鎹㈡垚鏃堕棿鎴� */

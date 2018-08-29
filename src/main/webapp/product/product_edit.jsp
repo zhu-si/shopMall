@@ -192,17 +192,14 @@
 			</label>
 			<div class="layui-upload">
 				<blockquote style="margin-top: 10px; height: 92px; width: 70%">
-				
 				<div class="picList" name="pics" width="300" height="200+" rows="2"
 						cols="5">
-						<c:forEach items="${requestScope.info.pics}" var="p">
+						<c:forEach items="${requestScope.info.piclist}" var="p">
 							<item url="${p}">
 						</c:forEach>
 					</div>
 				</blockquote>
-				<button class="layui-btn" id="test2" type="button"
-					style="margin: 10px 110px">上传</button>
-				<input type="hidden" id="imgurls" name="pics" value="${requestScope.info.pics}">
+				
 			</div>
 		</div>
 
