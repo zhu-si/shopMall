@@ -121,9 +121,9 @@
                     </li>
                 </ul>
             </li>
-			<li>
+            <li>
                 <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
+                    <i class="iconfont">&#xe726;</i>
                     <cite>订单管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
@@ -134,9 +134,15 @@
                             <cite>订单列表</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="../order_c/def">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>订单状态管理</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
-<li>
+			<li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
                     <cite>分类管理</cite>

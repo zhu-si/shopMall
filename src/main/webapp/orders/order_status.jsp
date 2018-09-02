@@ -25,25 +25,6 @@
     	if(login == "logind"){
     		window.parent.location.href="../login.jsp";
     	}
-    	
-    	/*订单-发货*/
-        function member_run(obj,id){
-        	layer.confirm('确认要操作吗？',function(index){
-                if($(obj).attr('title')=='发货'){
-                  //发异步把用户状态进行更改
-                  $(obj).attr('title','取消')
-                  $(obj).find('i').html('&#xe62f;');
-                  $(obj).parents("tr").find(".th-status").find('span').addClass('layui-btn-disabled').html('已发货');
-                  layer.msg('已发货 !');
-                }else{
-                  $(obj).attr('title','取消')
-                  $(obj).find('i').html('&#xe601;');
-                  $(obj).parents("tr").find(".th-status").find('span').removeClass('layui-btn-disabled').html('未发货');
-                  layer.msg('已取消!');
-                }
-            });
-        }
-    	
     </script>
   </head>
   
@@ -75,14 +56,12 @@
         <thead>
           <tr>
             <th><input type="checkbox" class="selectall"></th>
-            <th>ID</th>
-            <th>日期</th>
-            <th>订单编号</th>
-            <th>总金额</th>
-            <th>应付金额</th>
-            <th>地址</th>
-            <th>用户</th>
-            <th>订单状态</th>
+            <th>订单ID</th>
+            <th>时间</th>
+            <th>订单目的状态</th>
+            <th>状态文本</th>
+            <th>状态数字</th>
+            <th>状态金额</th>
            	<th>备注</th>
             <th >操作</th>
             </tr>
@@ -97,13 +76,8 @@
              <th>${orders.amount}</th>
              <th>${orders.nowamount}</th>
              <th>${orders.address_id}</th>
-             <th>${orders.user_id}</th>
-             <th class="th-status"><span class="layui-btn layui-btn-normal layui-btn-mini">未发货</span></th>
              <th>${orders.comments}</th>
-            <td class="th-manage">
-              <a onclick="member_run(this,'10001')" href="javascript:;"  title="发货">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
+            <td class="td-manage">
               <a title="查看" href="javascript:search(${orders.id});">
                 <i class="layui-icon">&#xe63c;</i>
               </a>
