@@ -1,7 +1,7 @@
 package searchInfo;
 
 public class operator_SearchInfo {
-	int max = 3;
+	int max = 5;
 	String txt="";
 	static Integer pageno = 1;
 

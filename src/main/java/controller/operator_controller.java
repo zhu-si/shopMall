@@ -31,7 +31,12 @@ public class operator_controller {
 	@RequestMapping("insert")
 	protected @ResponseBody jsonInfo insert(operator o) {
 		oservice.insert(o);
-		return new jsonInfo(1, "");
+		operator oper = oservice.login(o);
+		if(oper != null) {
+			return new jsonInfo(1, "添加成功");
+		}else {
+			return new jsonInfo(0, "添加失败");
+		}
 	} 
 	
 	@RequestMapping("update")
@@ -40,24 +45,33 @@ public class operator_controller {
 		return new jsonInfo(1, "");
 	}
 	
-	@RequestMapping("delete")
-	protected String delete(int id, ModelMap m) {
-		oservice.delete(id);
-		return "redirect:def";
+	@RequestMapping("uppass")
+	protected @ResponseBody jsonInfo uppass(int id,String password) {
+		oservice.uppass(id);
+//		boolean pass = oservice.getId(id).equals(password);
+		return new jsonInfo(1, "密码重置成功！");
+		
 	}
 	
-	@RequestMapping("deleteall")
-	protected String deleteall(String ids, ModelMap m) {
-		String[] strs = ids.split(",");
-		for (int i = 0; i < strs.length; i++) {
-			try {
-				int id = Integer.parseInt(strs[i]);
-				oservice.deleteall(id);
-			} catch (Exception e) {
-			}
-		}
-		return "redirect:def";
-	}
+	
+//	@RequestMapping("delete")
+//	protected String delete(int id, ModelMap m) {
+//		oservice.delete(id);
+//		return "redirect:def";
+//	}
+//	
+//	@RequestMapping("deleteall")
+//	protected String deleteall(String ids, ModelMap m) {
+//		String[] strs = ids.split(",");
+//		for (int i = 0; i < strs.length; i++) {
+//			try {
+//				int id = Integer.parseInt(strs[i]);
+//				oservice.deleteall(id);
+//			} catch (Exception e) {
+//			}
+//		}
+//		return "redirect:def";
+//	}
 	
 	@RequestMapping("edit")
 	protected String edit(int id, ModelMap m) {

@@ -10,7 +10,30 @@ public class orders {
 	int address_id;
 	int user_id;
 	int status;
+	String email;
+	String zone;
+	String addr;
 	String comments;
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getZone() {
+		return zone;
+	}
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 	public int getId() {
 		return id;
 	}

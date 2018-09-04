@@ -40,6 +40,34 @@
 	if (login == "logind") {
 		window.parent.parent.location.href = "../login.jsp";
 	}
+	
+	layui.use([ 'form' ],function(){
+	    var form = layui.form;
+		form.on('select(test)',function(data) {
+			$(event.target).parent().parent().parent().nextAll().remove();
+				     form.render('select');
+				$.post("gettypelist",{id : data.value},function(json) {
+						    if (json.length>0) {
+						    	var select = $("<select lay-filter='test' class='select'></select>");
+								var div = $("<div class='layui-input-inline'></div>");
+							    var first = $("<option>请选择</option>");
+								select.append(first);
+								for (var i = 0; i < json.length; i++) {
+									select.append($("<option value='"+json[i].id+"'>"+ json[i].name+ "</option>"));
+									div.append(select);
+									form.render('select');
+								}
+				                $("#type").append(div);
+				                form.render('select');
+							} else {
+								$(".hiddeninput").val(data.value);
+								form.render('select');
+								}
+						    form.render('select');
+                });
+         });
+ });
+
 </script>
 
 
@@ -57,71 +85,69 @@
 			<form class="layui-form" action="../product_c/insert" method="post">
 		</c:if>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>商品名称
-			</label>
-			<div class="layui-input-inline">
-				<input type="text" name="fullname" class="layui-input"
-					value="${requestScope.info.fullname}">
-			</div>
+		
+		<div class="layui-form-item" id="type">
+			<label class="layui-form-label" id="select">商品类型</label>
+				<input type="hidden" name="type_id" value="${requestScope.info.type_id}" class="hiddeninput" />
+					<%-- <c:if test="${requestScope.info==null}"> --%>
+					<div class="layui-input-inline">
+						<select lay-filter="test" class="select">
+							<option>请选择</option>
+							<c:forEach items="${requestScope.typelist}" var="r">
+								<option value="${r.id}">${r.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+				<%-- </c:if> --%>
+			<%-- <c:if test="${requestScope.info!=null}"></c:if> --%>
 		</div>
-
-		<div class="layui-form-item">
+		
+		
+		<%-- <div class="layui-form-item">
 			<label class="layui-form-label"> <span class="x-red">*</span>商品类型
 			</label>
 			<div class="layui-input-inline">
 				<input name="type_id" class="layui-input"
 					value="${requestScope.info.type_id}">
 			</div>
-		</div>
-
+		</div> --%>
 		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>活动
-			</label>
+			<label class="layui-form-label">商品名称</label>
+			<div class="layui-input-inline">
+				<input type="text" name="fullname" class="layui-input"
+					value="${requestScope.info.fullname}">
+			</div>
+		
+			<label class="layui-form-label">活动</label>
 			<div class="layui-input-inline">
 				<input type="text" name="activity"
 					value="${requestScope.info.activity}" class="layui-input">
 			</div>
-		</div>
-
+		 </div>
+		
 		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>提示信息
-			</label>
+			<label class="layui-form-label">提示信息</label>
 			<div class="layui-input-inline">
-				<input type="text" name="tip" value="${requestScope.info.tip}"
-					class="layui-input">
+				<input type="text" name="tip" value="${requestScope.info.tip}" class="layui-input">
+			</div>
+		
+			<label class="layui-form-label">促销信息</label>
+			<div class="layui-input-inline">
+				<input type="text" name="sale" value="${requestScope.info.sale}" class="layui-input">
 			</div>
 		</div>
 
+<!-- 
+		
+ -->
 		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>促销信息
-			</label>
-			<div class="layui-input-inline">
-				<input type="text" name="sale" value="${requestScope.info.sale}"
-					class="layui-input">
-			</div>
-		</div>
-
-
-		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>商品详情
-			</label>
-			<script id="editor" type="text/plain"
-				style="width: 300px; height: 200px; margin-top: 50px">${requestScope.info.info}</script>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>原价格
-			</label>
+			<label class="layui-form-label">原价格</label>
 			<div class="layui-input-inline">
 				<input type="text" name="price" value="${requestScope.info.price}"
 					class="layui-input">
 			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>现价格
-			</label>
+		
+			<label class="layui-form-label">现价格</label>
 			<div class="layui-input-inline">
 				<input type="text" name="nowprice"
 					value="${requestScope.info.nowprice}" class="layui-input">
@@ -129,91 +155,80 @@
 		</div>
 
 		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>销售数量
-			</label>
+			<label class="layui-form-label">销售数量</label>
 			<div class="layui-input-inline">
 				<input type="text" name="salecount"
 					value="${requestScope.info.salecount}" class="layui-input">
 			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label"> <span class="x-red">*</span>收藏人数
-			</label>
+		
+			<label class="layui-form-label">收藏人数</label>
 			<div class="layui-input-inline">
-				<input type="text" name="collectcount"
-					value="${requestScope.info.collectcount}" class="layui-input">
+				<input type="text" name="collectcount" value="${requestScope.info.collectcount}" class="layui-input">
 			</div>
 		</div>
 
 		<div class="layui-form-item">
-			<label for="name" class="layui-form-label"> <span
-				class="x-red"></span>优先级
-			</label>
+			<label class="layui-form-label">优先级</label>
 			<div class="layui-input-inline">
-				<input type="text" name="priority"
-					value="${requestScope.info.priority}" class="layui-input">
+				<input type="text" name="priority" value="${requestScope.info.priority}" class="layui-input">
+			</div>
+			
+			<label for="name" class="layui-form-label">备注</label>
+			<div class="layui-input-inline">
+				<input type="text" name="comments" value="${requestScope.info.comments}" class="layui-input">
 			</div>
 		</div>
-
+		
 		<div class="layui-form-item">
-			<label class="layui-form-label"><span class="x-red"></span>状态</label>
+			<label class="layui-form-label">状态</label>
 			<div class="layui-input-block">
 				<c:if test="${requestScope.info.status==null}">
-					<input type="checkbox" name="status" title="未出售" value="0"
+					<input type="radio" name="status" title="未出售" value="0"
 						checked="checked">
-					<input type="checkbox" name="status" title="出售中" value="1">
-					<input type="checkbox" name="status" title="已售罄" value="2">
+					<input type="radio" name="status" title="出售中" value="1">
+					<!-- <input type="radio" name="status" title="已售罄" value="2"> -->
 				</c:if>
 				<c:if test="${requestScope.info.status==0}">
-					<input type="checkbox" name="status" title="未出售" value="0"
+					<input type="radio" name="status" title="未出售" value="0"
 						checked="checked">
-					<input type="checkbox" name="status" title="出售中" value="1">
-					<input type="checkbox" name="status" title="已售罄" value="2">
+					<input type="radio" name="status" title="出售中" value="1">
+					<!-- <input type="radio" name="status" title="已售罄" value="2"> -->
 				</c:if>
 				<c:if test="${requestScope.info.status==1}">
-					<input type="checkbox" name="status" title="未出售" value="0">
-					<input type="checkbox" name="status" title="出售中" value="1"
+					<input type="radio" name="status" title="未出售" value="0">
+					<input type="radio" name="status" title="出售中" value="1"
 						checked="checked">
-					<input type="checkbox" name="status" title="已售罄" value="2">
+					<!-- <input type="radio" name="status" title="已售罄" value="2"> -->
 				</c:if>
-				<c:if test="${requestScope.info.status==2}">
-					<input type="checkbox" name="status" title="未出售" value="0">
-					<input type="checkbox" name="status" title="出售中" value="1">
-					<input type="checkbox" name="status" title="已售罄" value="2"
+				<%-- <c:if test="${requestScope.info.status==2}">
+					<input type="radio" name="status" title="未出售" value="0">
+					<input type="radio" name="status" title="出售中" value="1">
+					<input type="radio" name="status" title="已售罄" value="2"
 						checked="checked">
-				</c:if>
+				</c:if> --%>
 			</div>
 		</div>
-
+		
 		<div class="layui-form-item">
-			<label for="name" class="layui-form-label"> <span
-				class="x-red"></span>图片
-			</label>
+			<label for="name" class="layui-form-label">图片</label>
 			<div class="layui-upload">
 				<blockquote style="margin-top: 10px; height: 92px; width: 70%">
-				<div class="picList" name="pics" width="300" height="200+" rows="2"
-						cols="5">
+				<div class="picList" name="pics" width="300" height="200+" rows="2" cols="5" style="width:600px">
 						<c:forEach items="${requestScope.info.piclist}" var="p">
 							<item url="${p}">
 						</c:forEach>
 					</div>
 				</blockquote>
-				
 			</div>
 		</div>
-
+		
 		<div class="layui-form-item">
-			<label for="name" class="layui-form-label"> <span
-				class="x-red"></span>备注
-			</label>
-			<div class="layui-input-inline">
-				<input type="text" name="comments"
-					value="${requestScope.info.comments}" class="layui-input">
-			</div>
+			<label class="layui-form-label">商品详情</label>
+			<script id="editor" type="text/plain"
+				style="width: 300px; height: 200px; margin-top: 50px">${requestScope.info.info}</script>
 		</div>
-
-		<div class="layui-form-item">
+		
+		<div class="layui-form-item" style="text-align: center;">
 			<label for="L_repass" class="layui-form-label"> </label>
 			<button class="layui-btn" type="button" onclick="edit();">提交</button>
 		</div>

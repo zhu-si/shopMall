@@ -23,6 +23,9 @@ public interface operator_dao {
 	@Update("update operator set nike=#{nike},name=#{name},sex=#{sex},tel=#{tel},power=#{power},status=#{status},comments=#{comments} where id=#{id}")
 	public void update(operator o);
 	
+	@Update("update operator set password='123456' where id=#{id}")
+	public void uppass(int id);
+	
 	@Delete("delete from operator where id=#{id}")
 	public void deleteall(int id);
 	

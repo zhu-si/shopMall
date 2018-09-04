@@ -39,7 +39,6 @@ public class operator_serviceImpl implements operator_service{
 		
 	}
 
-
 	public void deleteall(int id) {
 		odao.deleteall(id);
 	}
@@ -51,6 +50,11 @@ public class operator_serviceImpl implements operator_service{
 
 	public operator login(operator o) {
 		return odao.login(o);
+	}
+
+
+	public void uppass(int id) {
+		odao.uppass(id);
 	}
 
 }

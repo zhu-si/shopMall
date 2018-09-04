@@ -42,9 +42,7 @@
     <div class="x-body">
       <xblock>
       	<label>上级：</label><label>${requestScope.path}</label>
-        <button class="layui-btn layui-btn-danger" onclick="delall()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="javascript:openwin();"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
       </xblock>
       <table class="layui-table">
         <thead>

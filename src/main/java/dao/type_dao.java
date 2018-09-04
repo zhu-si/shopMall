@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -28,4 +29,7 @@ public interface type_dao {
 	
 	@Select(value = "select * from type where id=#{id}")
 	public type getById(int id);
+	
+	@Select(value = "select * from type where parentid=#{parentid}")
+	public ArrayList<type> getByparentid(int id);
 }

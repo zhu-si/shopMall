@@ -88,19 +88,19 @@
 				<div class="layui-input-block">
 				
 				<c:if test="${requestScope.info.power==0}">
-					<input type="checkbox" name="power" title="白银 " value="0" checked="checked"> 
-					<input type="checkbox" name="power" title="黄金" value="1"> 
-					<input type="checkbox" name="power" title="钻石" value="2">
+					<input type="radio" name="power" title="白银 " value="0" checked="checked"> 
+					<input type="radio" name="power" title="黄金" value="1"> 
+					<input type="radio" name="power" title="钻石" value="2">
 				</c:if>
 				<c:if test="${requestScope.info.power==1}">
-					<input type="checkbox" name="power" title="白银 " value="0" > 
-					<input type="checkbox" name="power" title="黄金" value="1" checked="checked"> 
-					<input type="checkbox" name="power" title="钻石" value="2">
+					<input type="radio" name="power" title="白银 " value="0" > 
+					<input type="radio" name="power" title="黄金" value="1" checked="checked"> 
+					<input type="radio" name="power" title="钻石" value="2">
 				</c:if>
 				<c:if test="${requestScope.info.power==2}">
-					<input type="checkbox" name="power" title="白银 " value="0" > 
-					<input type="checkbox" name="power" title="黄金" value="1"> 
-					<input type="checkbox" name="power" title="钻石" value="2" checked="checked">
+					<input type="radio" name="power" title="白银 " value="0" > 
+					<input type="radio" name="power" title="黄金" value="1"> 
+					<input type="radio" name="power" title="钻石" value="2" checked="checked">
 				</c:if>
 				</div>
 			</div>

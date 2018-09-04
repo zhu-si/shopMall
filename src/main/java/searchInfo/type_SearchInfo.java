@@ -1,10 +1,20 @@
 package searchInfo;
 
 public class type_SearchInfo {
-	int max = 3;
+	int max = 100;
 	String txt="";
 	static Integer pageno = 1;
 	
+	public type_SearchInfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public type_SearchInfo(String where) {
+		super();
+		this.where = where;
+	}
+
 	public Integer getPageno() {
 		return pageno;
 	}

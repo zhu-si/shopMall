@@ -33,8 +33,11 @@ public class order_serviceImpl implements order_service{
 	}
 
 	public Object getId(int id) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<orders> selectDate(String start, String end) {
+		return rdao.selectDate(start, end);
 	}
 	
 }

@@ -1,6 +1,7 @@
 package serviceImpl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,10 @@ public class type_serviceImpl implements type_service{
 	public void update(type t) {
 		tdao.update(t);
 		
+	}
+
+	public ArrayList<type> getByparentid(int id) {
+		return tdao.getByparentid(id);
 	}
 
 	

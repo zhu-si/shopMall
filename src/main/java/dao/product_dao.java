@@ -15,7 +15,7 @@ import searchInfo.product_SearchInfo;
 @Repository("product_dao")
 public interface product_dao {
 
-	@Select(value = "select * from product ${where} ${limit}")
+	@Select(value = "select p.*,t.name from product p inner join type t on p.type_id=t.id ${where} ${limit}")
 	public List<product> def(product_SearchInfo info);
 
 	@Insert("insert into product(fullname,type_id,activity,tip,sale,info,price,nowprice,salecount,collectcount,priority,status,pics,comments) values(#{fullname},#{type_id},#{activity},#{tip},#{sale},#{info},#{price},#{nowprice},#{salecount},#{collectcount},#{priority},#{status},#{pics},#{comments})")

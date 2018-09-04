@@ -1,19 +1,16 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import entity.product;
+import entity.type;
 import searchInfo.product_SearchInfo;
 import searchInfo.type_SearchInfo;
 import service.product_service;
@@ -71,6 +68,7 @@ public class product_controller {
 	
 	@RequestMapping("add")
 	protected String add(ModelMap m) {
+		m.put("typelist",tservice.def(new type_SearchInfo(" where type.parentid=0")));
 		return "product/product_edit";
 	}
 	
@@ -78,6 +76,14 @@ public class product_controller {
 	protected String edit(int id, ModelMap m) {
 		m.put("info", pservice.getId(id));
 		return add(m);
+	}
+	
+	@RequestMapping("gettypelist")
+	protected @ResponseBody ArrayList<type> gettypelist(int id, ModelMap m) {
+		tservice.getByparentid(id);
+		ArrayList<type> tp= new ArrayList<type>();
+		tp=tservice.getByparentid(id);
+		return tp;
 	}
 	
 	/*@RequestMapping("upload")

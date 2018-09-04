@@ -20,7 +20,8 @@ public class user_controller {
 	user_service uservice;
 	
 	@RequestMapping("def")
-	public String def(user_SearchInfo info,ModelMap model) {
+	public String def(String txt,user_SearchInfo info,ModelMap model) {
+		model.put("ttt", txt);
 		model.put("list", uservice.def(info));
 		model.put("prev",user_SearchInfo.getPrev());
 		model.put("next",user_SearchInfo.getNext());

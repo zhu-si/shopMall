@@ -10,6 +10,7 @@ import entity.orders;
 import searchInfo.orders_SearchInfo;
 import service.order_service;
 import service.orders_details_service;
+import service.user_service;
 import utils.jsonInfo;
 
 @Controller
@@ -20,12 +21,28 @@ public class order_controller {
 	order_service rservice;
 	@Autowired
 	orders_details_service dservice;
+	@Autowired
+	user_service uservice;
 	
 	@RequestMapping("def")
-	public String def(orders_SearchInfo info,ModelMap model) {
-		model.put("list", rservice.def(info));
-		model.put("prev",orders_SearchInfo.getPrev());
-		model.put("next",orders_SearchInfo.getNext());
+	public String def(String start,String end,orders_SearchInfo info,ModelMap model) {
+		if(start != null) {
+			model.put("start", start);
+			model.put("end", end);
+			model.put("list", rservice.selectDate(start, end));
+//			for(int i =0 ; i <(rservice.selectDate(start, end)).size(); i++) {
+//				int id = rservice.selectDate(start, end).get(i).getUser_id();
+//				model.put("list",uservice.getId(id));
+//				}
+		}else {
+			model.put("list", rservice.def(info));
+			model.put("prev",orders_SearchInfo.getPrev());
+			model.put("next",orders_SearchInfo.getNext());
+//			for(int i =0 ; i <(rservice.selectDate(start, end)).size(); i++) {
+//				int id = rservice.selectDate(start, end).get(i).getUser_id();
+//				model.put("user",uservice.getId(id));
+//				}
+		}
 		return "orders/order_index";
 	}
 	
@@ -34,6 +51,15 @@ public class order_controller {
 		model.put("lists", dservice.getId(id));
 		return "orders/order_view";
 	}
+	
+//	@RequestMapping("selectDate")
+//	public String selectDate(String start,String end,ModelMap model) {
+//		System.out.println(start);
+//		model.put("start", start);
+//		model.put("end", end);
+//		model.put("datelist", rservice.selectDate(start, end));
+//		return "orders/order_index";
+//	}
 	
 	@RequestMapping("insert")
 	protected @ResponseBody jsonInfo insert(orders r) {

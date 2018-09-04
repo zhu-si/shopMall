@@ -12,6 +12,8 @@ public interface operator_service {
 	public void insert(operator o);
 
 	public void update(operator o);
+	
+	public void uppass(int id);
 
 	public void delete(int id);
 

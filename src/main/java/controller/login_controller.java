@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import entity.operator;
 import service.login_service;
 
 @Controller
@@ -28,10 +31,10 @@ public class login_controller {
 			if (username.equals(nike) && password.equals(pass)) {
 				HttpSession session = req.getSession();
 				session.setAttribute("username", username);
-				session.setAttribute(password, password);
+				session.setAttribute("password", password);
 				session.setAttribute("id", lservice.getByName(username).get(0).getId());
 				session.setAttribute("name", lservice.getByName(username).get(0).getName());
-				session.setMaxInactiveInterval(5);
+				session.setMaxInactiveInterval(1000);
 				return "index";
 			} else {
 				return "login";

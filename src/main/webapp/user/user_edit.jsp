@@ -28,6 +28,7 @@
     	if(login == "logind"){
     		window.parent.parent.location.href="../login.jsp";
     	}
+    	
     </script>
 </head>
 
@@ -54,16 +55,7 @@
 				</div>
 			</div>
 
-			<div class="layui-form-item">
-				<label for="L_pass" class="layui-form-label"> <span
-					class="x-red">*</span>密码
-				</label>
-				<div class="layui-input-inline">
-					<input type="password" name="password" class="layui-input" value="${requestScope.info.password}">
-				</div>
-				<div class="layui-form-mid layui-word-aux">6到16个字符</div>
-			</div>
-
+			
 			<div class="layui-form-item">
 				<label for="phone" class="layui-form-label"> <span
 					class="x-red">*</span>手机

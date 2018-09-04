@@ -1,6 +1,6 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
-	isELIgnored="false"%><!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -35,12 +35,25 @@
 function openwine(id) {
 	x_admin_show('编辑','edit?id='+id);
 }
+function uppass(id) {
+		$.ajax({
+			  type: 'POST',
+			  url: "uppass",
+			  data:{id:id},
+			  dataType:"json",
+			  success: function(json){
+			       if(json.status=="1"){
+			    	   alert(json.text);
+			       }
+			  }
+			});
+}
 
 function fresh() {
 	location.href="../operator_c/def";
 }
 
-$(function(){
+/* $(function(){
 	$(".selectall").on("click",function(){
 		if(event.target.checked)
 		$(".chk").prop("checked","checked");
@@ -70,6 +83,26 @@ function del(id) {
 	if(confirm("确认删除？")){
 		location.href="delete?id="+id;
 	}
+} */
+
+/*管理员-状态*/
+function member_run(obj, id) {
+	layer.confirm('确认要操作吗？', function(index) {
+		if ($(obj).attr('title') == '停用') {
+			//发异步把用户状态进行更改
+			$(obj).attr('title', '启用')
+			$(obj).find('i').html('&#xe62f;');
+			$(obj).parents("tr").find(".th-status").find('span').addClass(
+					'layui-btn-disabled').html('离职');
+			layer.msg('已停用 !');
+		} else {
+			$(obj).attr('title', '停用')
+			$(obj).find('i').html('&#xe601;');
+			$(obj).parents("tr").find(".th-status").find('span')
+					.removeClass('layui-btn-disabled').html('在职');
+			layer.msg('已启用!');
+		}
+	});
 }
 
 </script>
@@ -89,33 +122,36 @@ function del(id) {
 			</form>
 		</div>
 		<xblock>
-		<button class="layui-btn layui-btn-danger" onclick="delall()"><i class="layui-icon"></i>批量删除</button>
-		<button class="layui-btn" onclick="x_admin_show('添加用户','../operator/operator-add.jsp')"><i class="layui-icon"></i>添加</button>
-		<span class="x-right" style="line-height: 40px">共有数据： 条</span> </xblock>
+		<!-- <button class="layui-btn layui-btn-danger" onclick="delall()"><i class="layui-icon"></i>批量删除</button> -->
+		<button class="layui-btn" onclick="x_admin_show('添加用户','../operator/operator-add.jsp','950','440')"><i class="layui-icon"></i>添加</button>
+		</xblock>
 		<table class="layui-table">
 			<thead>
 				<tr>
-					<th><input type="checkbox" class="selectall"></th>
-					<th>ID</th><th>用户名 <th>密码</th><th>姓名</th><th>性别</th><th>电话</th><th>权限</th><th>状态</th><th>备注</th><th>操作</th>
+					<!-- <th><input type="checkbox" class="selectall"></th> -->
+					<th>ID</th><th>用户名</th><th>姓名</th><th>性别</th><th>电话</th><th>权限</th><th>状态</th><th>备注</th><th>操作</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach items="${requestScope.list}" var="operator">
 				<tr>
-					<th><input type="checkbox" class="chk" myid="${operator.id}"></th>
-					<th>${operator.id}</th><th>${operator.nike}</th><th>${operator.password}</th><th>${operator.name}</th>
+					<%-- <th><input type="checkbox" class="chk" myid="${operator.id}"></th> --%>
+					<th>${operator.id}</th><th>${operator.nike}</th><th>${operator.name}</th>
 					<c:if test="${operator.sex==0}"><td>男</td></c:if>
 					<c:if test="${operator.sex==1}"><td>女</td></c:if>
 					<th>${operator.tel}</th>
-					<c:if test="${operator.power==0}"><td>白银</td></c:if>
-					<c:if test="${operator.power==1}"><td>黄金</td></c:if>
-					<c:if test="${operator.power==2}"><td>钻石</td></c:if>
-					<c:if test="${operator.status==0}"><td>在职</td></c:if>
-					<c:if test="${operator.status==1}"><td>离职</td></c:if>
+					<c:if test="${operator.power==2}"><td>用户管理员</td></c:if>
+					<c:if test="${operator.power==1}"><td>商品管理员</td></c:if>
+					<c:if test="${operator.power==3}"><td>订单管理员</td></c:if>
+					<c:if test="${operator.power==0}"><td>超级管理员</td></c:if>
+					<th class="th-status" style="width:70px"><span class="layui-btn layui-btn-normal layui-btn-mini">在职</span></th>
 					<th>${operator.comments}</th>
-					<th class="td-manage"><a onclick="member_stop(this,'10001')" href="javascript:;" title="启用"> <i class="layui-icon">&#xe601;</i></a> 
-					<a title="修改" onclick="javascript:openwine(${operator.id});" > <i class="layui-icon">&#xe642;</i></a>
-					<a title="删除" href="javascript:del(${operator.id});"><i class="layui-icon">&#xe640;</i></a></th>
+					<th class="td-manage">
+						<a onclick="member_run(this,'10001')" href="javascript:;" title="停用"> <i class="layui-icon">&#xe601;</i></a>
+						<a title="重置密码"  onclick="javascript:uppass(${operator.id});"> <i class="layui-icon">&#xe642;</i></a> 
+						<%-- <a title="修改" onclick="javascript:openwine(${operator.id});" > <i class="layui-icon">&#xe642;</i></a> --%>
+						<%-- <a title="删除" href="javascript:del(${operator.id});"><i class="layui-icon">&#xe640;</i></a> --%>
+					</th>
 				</tr>
 				</c:forEach>
 			</tbody>

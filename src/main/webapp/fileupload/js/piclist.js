@@ -38,7 +38,7 @@ $(function(){
 		var w=c.attr("width")/c.attr("cols");
 		var h=c.attr("height")/c.attr("rows");
 		var item=$("<div class='picItem'></div>").css({width:w+"px",height:h+"px",position:"relative",display: "inline"});	
-		var img=$("<img  src='../fileupload/img/back.png'>").css({width:w+"px",height:h+"px"});
+		var img=$("<img  src='../fileupload/img/back1.png'>").css({width:w+"px",height:h+"px"});
 		item.append(img);
 		var addbt=$("<i class='fa "+addicon+"'></i>").css({"right":"0px","font-size":"30px",position:"absolute"});
 		item.append(addbt);
@@ -86,7 +86,7 @@ $(function(){
 	
 	
 	var c=$(".picList");
-	c.css({width:c.attr("width")+"px",height:c.attr("height")+"px"});
+	c.css({width:c.attr("600")+"px",height:c.attr("height")+"px"});
 	var form=$("<form class='fileform' action='upload' method='post' enctype='multipart/form-data' style='display:none;' ></form>");
 	var fileinput=$("<input type='file' name='file'>");
 	form.append(fileinput);

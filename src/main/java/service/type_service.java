@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entity.type;
@@ -17,4 +18,5 @@ public interface type_service {
 
 	public void update(type t);
 	
+	public ArrayList<type> getByparentid(int id);
 }

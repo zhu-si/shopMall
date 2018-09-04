@@ -29,7 +29,7 @@ public interface orders_details_dao {
 	@Delete("delete from orders_details where id=#{id}")
 	public void delete(int id);
 	
-	@Select("select * from oredrs_details where orders_id = #{id}")  
+	@Select("select * from orders_details where orders_id = #{id}")  
 	public List<orders_details> getId(int id);
 	
 	

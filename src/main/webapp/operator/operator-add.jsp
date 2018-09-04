@@ -40,11 +40,9 @@
 					<input type="text" name="nike" class="layui-input">
 				</div>
 				<div class="layui-form-mid layui-word-aux">
-					<span class="x-red">*</span>将会成为您唯一的登入名
+					<span class="x-red">*</span>将会成为您唯一的登录名
 				</div>
-			</div>
-
-			<div class="layui-form-item">
+			
 				<label for="L_pass" class="layui-form-label"> <span
 					class="x-red">*</span>密码
 				</label>
@@ -61,8 +59,9 @@
 				<div class="layui-input-inline">
 					<input type="text" name="name" class="layui-input">
 				</div>
-			</div>
-			<div class="layui-form-item">
+				<div class="layui-form-mid layui-word-aux">
+					<span class="x-red">*</span>请输入您个人的真实姓名
+				</div>
 				<label for="name" class="layui-form-label"> <span
 					class="x-red"></span>性别
 				</label>
@@ -81,17 +80,16 @@
 				<div class="layui-input-inline">
 					<input type="text" name="tel" class="layui-input">
 				</div>
+				<div class="layui-form-mid layui-word-aux">
+					<span class="x-red">*</span>请输入您个人的真实电话
+				</div>
 
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label"><span class="x-red"></span>权限</label>
-				<div class="layui-input-block">
-					<input type="checkbox" name="power" title="白银 " value="0" checked="checked"> 
-					<input type="checkbox" name="power" title="黄金" value="1"> 
-					<input type="checkbox" name="power" title="钻石" value="2">
+				<label for="name" class="layui-form-label"> <spanclass="x-red"></span>备注</label>
+				<div class="layui-input-inline">
+					<input type="text" name="comments" 	class="layui-input">
 				</div>
 			</div>
+			
 			<div class="layui-form-item">
 				<label for="name" class="layui-form-label"><spanclass="x-red"></span>状态</label>
 				<div class="layui-input-inline">
@@ -100,14 +98,22 @@
 					<option class="layui-input" value="1">离职</option>
 				</select>
 				</div>
-			</div>
+				<div class="layui-form-mid layui-word-aux">
+					<span class="x-red">*</span>请选择您个人的目前状态
+				</div>
+				</div>
+			
 			<div class="layui-form-item">
-				<label for="name" class="layui-form-label"> <spanclass="x-red"></span>备注</label>
-				<div class="layui-input-inline">
-					<input type="text" name="comments" 	class="layui-input">
+				
+				<label class="layui-form-label"><span class="x-red"></span>权限</label>
+				<div class="layui-input-block">
+					<input type="radio" name="power" title="白银 " value="0" checked="checked"> 
+					<input type="radio" name="power" title="黄金" value="1"> 
+					<input type="radio" name="power" title="钻石" value="2">
 				</div>
 			</div>
-			<div class="layui-form-item">
+			
+			<div class="layui-form-item" style="text-align:center;margin-left:350px">
 				<label for="L_repass" class="layui-form-label"> </label>
 				<button class="layui-btn" type="button" onclick="add();" >增加</button>
 			</div>
@@ -118,6 +124,7 @@
          function add() {
         	  $.post($(".layui-form").attr("action"),$(".layui-form").serialize(),function(json){
         			if(json.status>0){
+        				alert(json.text);
         				var index=parent.layer.getFrameIndex(window.name);
         				parent.layer.close(index);
         				parent.fresh();

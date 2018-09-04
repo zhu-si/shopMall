@@ -32,7 +32,7 @@
     	 //监听提交
         function edit() {
        	  $.post($(".layui-form").attr("action"),$(".layui-form").serialize(),function(json){
-       			if(json.status=2){
+       			if(json.status==2){
        				alert(json.text);
        				var index=parent.layer.getFrameIndex(window.name);
        				parent.layer.close(index);
@@ -47,8 +47,8 @@
     </script>
 </head>
 
-<body >
-	<div class="x-body">
+<body>
+	<div class="x-body" >
 		<form class="layui-form" action="../currentUser_c/update" method="post">
 		<input type="hidden" name="id" value="${requestScope.info.id}">
 			<div class="layui-form-item">
@@ -56,7 +56,7 @@
 					class="x-red">*</span>原密码
 				</label>
 				<div class="layui-input-inline">
-					<input type="password" name="password0" placeholder="请输入..." value=""
+					<input type="password" name="password0" placeholder="请输入原密码..." value=""
 						class="layui-input">
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 					class="x-red"></span>新密码
 				</label>
 				<div class="layui-input-inline">
-					<input type="password" name="password" placeholder="请输入..." value=""
+					<input type="password" name="password" placeholder="请输入新密码..." value=""
 						class="layui-input">
 				</div>
 				
@@ -77,7 +77,7 @@
 					class="x-red"></span>新密码
 				</label>
 				<div class="layui-input-inline">
-					<input type="password" name="password1" placeholder="再次输入..." value=""
+					<input type="password" name="password1" placeholder="再次输入新密码..." value=""
 						class="layui-input">
 				</div>
 			</div>

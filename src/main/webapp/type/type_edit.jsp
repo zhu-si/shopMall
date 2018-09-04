@@ -32,10 +32,10 @@
     
 </head>
 
-<body>
+<body >
 	<div class="x-body">
 	
-	<c:if test="${requestScope.info1!=null}">
+	<c:if test="${requestScope.info!=null}">
 			<form class="layui-form" action="update" method="post">
 			<input type="hidden" name="id" value="${requestScope.info1.id}">
 		</c:if>
@@ -50,7 +50,7 @@
 					class="x-red">*</span>类别名称:
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" name="name" value="${requestScope.info1.name}" class="layui-input">
+					<input type="text" name="name" value="${requestScope.info.name}" class="layui-input">
 				</div>
 			</div>
 			

@@ -17,7 +17,15 @@ public class product {
 	int status;			//״̬
 	String pics;		//ͼƬ
 	String comments;	//��ע
+	String name;
 	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String[] getPiclist() {
 		if(pics==null||pics.length()<5)return new String[0];
 		return pics.split(",");
