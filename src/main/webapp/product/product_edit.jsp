@@ -64,16 +64,41 @@
 								form.render('select');
 								}
 						    form.render('select');
-                });
-         });
- });
+                	});
+         	});
+ 	});
+	
+	$(function(){
+		layui.use([ 'form' ],function() {
+			 if(${requestScope.info.type_id!=null}){
+			   var form = layui.form;
+			   var id = "${requestScope.info.type_id}";
+		       $.post("getalltyple",{id : id},function(json) {
+			        for (var i = 0; i < json.length; i++) {
+					        var select = $("<select lay-filter='test'></select>");
+							var div = $("<div class='layui-input-inline'></div>");
+							var first = $("<option>请选择</option>");
+							select.append(first);
+						    for (var j = 0; j < json[i].length; j++) {
+								if (json[i][j].parent_name == "1") {
+									select.append($("<option selected='selected' value='"+json[i][j].id+"'>"+ json[i][j].name+ "</option>"));
+									div.append(select);
+									form.render('select');
+								} else {select.append($("<option value='"+json[i][j].id+"'>"+ json[i][j].name+ "</option>"));
+									div.append(select);
+									form.render('select');
+								}
+							}
+							$("#type").append(div);
+							form.render('select');
+					 }
+				});
+			 }
+		});
+	});
 
 </script>
-
-
-
 </head>
-
 <body>
 	<div class="x-body">
 
@@ -89,7 +114,7 @@
 		<div class="layui-form-item" id="type">
 			<label class="layui-form-label" id="select">商品类型</label>
 				<input type="hidden" name="type_id" value="${requestScope.info.type_id}" class="hiddeninput" />
-					<%-- <c:if test="${requestScope.info==null}"> --%>
+					<c:if test="${requestScope.info==null}">
 					<div class="layui-input-inline">
 						<select lay-filter="test" class="select">
 							<option>请选择</option>
@@ -98,8 +123,8 @@
 							</c:forEach>
 						</select>
 					</div>
-				<%-- </c:if> --%>
-			<%-- <c:if test="${requestScope.info!=null}"></c:if> --%>
+				</c:if>
+			<c:if test="${requestScope.info!=null}"></c:if>
 		</div>
 		
 		

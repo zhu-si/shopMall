@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import entity.product;
 import entity.type;
+import searchInfo.SearchInfo;
+import searchInfo.operator_SearchInfo;
 import searchInfo.product_SearchInfo;
 import searchInfo.type_SearchInfo;
 import service.product_service;
@@ -85,6 +87,28 @@ public class product_controller {
 		tp=tservice.getByparentid(id);
 		return tp;
 	}
+	
+	@RequestMapping("getalltyple")
+	@ResponseBody
+	public List<List<type>> getAllType(Integer id){
+	    ArrayList<List<type>> data=new ArrayList<List<type>>();
+	    type list=tservice.getById(id);
+	    List<type> slist=tservice.def(new type_SearchInfo(" where type.parentid="+list.getParentid()));
+	    for(int i=0;i<slist.size();i++)if(slist.get(i).getId()==id) {
+	    	slist.get(i).setParent_name("1");
+	    }
+	    data.add(slist);
+	    while(list.getParentid()>0) {
+	    	list=tservice.getById(list.getParentid());
+	    	slist=tservice.def(new type_SearchInfo(" where type.parentid="+list.getParentid()));
+	    	for(int i=0;i<slist.size();i++)if(slist.get(i).getId()==list.getId()) {
+	    		slist.get(i).setParent_name("1");
+	    	}
+	    	data.add(0,slist);
+	    }
+	    return data;
+	}
+
 	
 	/*@RequestMapping("upload")
     public @ResponseBody String  fileUpload2(@RequestParam CommonsMultipartFile file,HttpServletRequest req) throws IOException {

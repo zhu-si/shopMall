@@ -123,7 +123,6 @@
 	</div>
 	<script>
     function openwin(id) {
-    	alert(111);
     	x_admin_show('修改','edit?id='+id,'750','500');
     }
 

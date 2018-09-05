@@ -26,8 +26,7 @@ public class login_filter implements Filter {
 		 HttpServletResponse resp = (HttpServletResponse) resp1;
 		 HttpSession session = req.getSession();
 		 operator user = (operator) session.getAttribute("user");
-		 String path=req.getRequestURI();	
-		 
+		 String path=req.getRequestURI();
 		 if(check(path)) {
 			 chain.doFilter(req, resp);
 		 }else {

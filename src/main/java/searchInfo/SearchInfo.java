@@ -1,19 +1,9 @@
 package searchInfo;
 
-public class type_SearchInfo {
-	int max = 100;
+public class SearchInfo {
+	int max = 5;
 	String txt="";
 	static Integer pageno = 1;
-	
-	public type_SearchInfo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public type_SearchInfo(String where) {
-		super();
-		this.where = where;
-	}
 
 	public Integer getPageno() {
 		return pageno;
@@ -51,7 +41,7 @@ public class type_SearchInfo {
 	public void setTxt(String txt) {
 		if(txt!=null&&txt.length()>0)
 		this.txt = txt;
-		where=" where name like '%"+ txt +"%'";
+		where=" where nike like '%"+ txt +"%'";
 	}
 
 	public String getWhere() {
@@ -59,6 +49,7 @@ public class type_SearchInfo {
 	}
 
 	public void setWhere(String where) {
+		
 		this.where = where;
 	}
 
