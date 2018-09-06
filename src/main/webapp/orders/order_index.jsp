@@ -81,12 +81,12 @@
 				<tr>
 					<th style="width:20px"><input type="checkbox" class="selectall"></th>
 					<th style="width:20px">ID</th>
-					<th style="width:120px">订单编号</th>
-					<th style="width:150px">日期</th>
-					<th style="width:60px">总金额</th>
+					<th style="width:130px">订单编号</th>
+					<th style="width:160px">日期</th>
+					<th style="width:50px">总金额</th>
 					<th style="width:60px">应付金额</th>
-					<th style="width:300px">地址</th>
-					<th style="width:150px">用户</th>
+					<th style="width:330px">地址</th>
+					<th style="width:130px">用户</th>
 					<!-- <th>订单状态</th> -->
 					<th>备注</th>
 					<th>操作</th>

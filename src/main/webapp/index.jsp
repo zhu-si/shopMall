@@ -73,7 +73,7 @@
                     <li>
                         <a _href="../user_c/def">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员列表</cite>
+                            <cite>用户列表</cite>
                         </a>
                     </li >
                 </ul>
@@ -93,12 +93,12 @@
                             <cite>订单列表</cite>
                         </a>
                     </li >
-                    <li>
+                    <%-- <li>
                         <a _href="../order_c/def">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单状态管理</cite>
                         </a>
-                    </li >
+                    </li > --%>
                 </ul>
             </li>
             </c:if>
