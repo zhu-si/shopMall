@@ -129,7 +129,7 @@ function member_run(obj, id) {
 			<thead>
 				<tr>
 					<!-- <th><input type="checkbox" class="selectall"></th> -->
-					<th>ID</th><th>用户名</th><th>姓名</th><th>性别</th><th>电话</th><th>权限</th><th>备注</th><th>操作</th>
+					<th>ID</th><th>用户名</th><th>姓名</th><th>性别</th><th>电话</th><th>权限</th><th>状态</th><th>备注</th><th>操作</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -144,10 +144,10 @@ function member_run(obj, id) {
 					<c:if test="${operator.power==1}"><td>商品管理员</td></c:if>
 					<c:if test="${operator.power==3}"><td>订单管理员</td></c:if>
 					<c:if test="${operator.power==0}"><td>超级管理员</td></c:if>
-					<!-- <th class="th-status" style="width:70px"><span class="layui-btn layui-btn-normal layui-btn-mini">在职</span></th> -->
+					<th class="th-status" style="width:70px"><span class="layui-btn layui-btn-normal layui-btn-mini">在职</span></th>
 					<th>${operator.comments}</th>
 					<th class="td-manage">
-						<!-- <a onclick="member_run(this,'10001')" href="javascript:;" title="停用"> <i class="layui-icon">&#xe601;</i></a> -->
+						<a onclick="member_run(this,'10001')" href="javascript:;" title="停用"> <i class="layui-icon">&#xe601;</i></a>
 						<a title="重置密码"  onclick="javascript:uppass(${operator.id});"> <i class="layui-icon">&#xe642;</i></a> 
 						<%-- <a title="修改" onclick="javascript:openwine(${operator.id});" > <i class="layui-icon">&#xe642;</i></a> --%>
 						<%-- <a title="删除" href="javascript:del(${operator.id});"><i class="layui-icon">&#xe640;</i></a> --%>

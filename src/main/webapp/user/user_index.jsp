@@ -83,11 +83,11 @@
 					<th>登录邮箱</th>
 					<th>密码</th>
 					<th>绑定手机号</th>
-					<!-- <th>会员级别</th> -->
+					<th>会员级别</th>
 					<th>累计消费金额</th>
-					<!-- <th>状态</th> -->
+					<th>状态</th>
 					<th>备注</th>
-					<!-- <th>操作</th> -->
+					<th>操作</th>
 			</thead>
 			<tbody>
 				<c:forEach items="${requestScope.list}" var="user">
@@ -97,7 +97,7 @@
 						<th>${user.email}</th>
 						<th>${user.password}</th>
 						<th>${user.tel}</th>
-						<%-- <c:if test="${user.level==0}">
+						<c:if test="${user.level==0}">
 							<th>白银</th>
 						</c:if>
 						<c:if test="${user.level==1}">
@@ -111,15 +111,15 @@
 						</c:if>
 						<c:if test="${user.level==4}">
 							<th>超级</th>
-						</c:if> --%>
+						</c:if>
 						<th>${user.amount}</th>
-						<!-- <th class="th-status"><span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></th> -->
+						<th class="th-status"><span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></th>
 						<th>${user.comments}</th>
-						<%-- <th class="td-manage">
+						<th class="td-manage">
 							<a onclick="member_run(this,'10001')" href="javascript:;" title="停用"> <i class="layui-icon">&#xe601;</i></a> 
-							<a title="修改" onclick="javascript:openwinee(${user.id});"> <i class="layui-icon">&#xe642;</i></a> 
-							<a title="删除" href="javascript:del(${user.id});"><i class="layui-icon">&#xe640;</i> </a>
-						</th> --%>
+							<%-- <a title="修改" onclick="javascript:openwinee(${user.id});"> <i class="layui-icon">&#xe642;</i></a> 
+							<a title="删除" href="javascript:del(${user.id});"><i class="layui-icon">&#xe640;</i> </a> --%>
+						</th>
 					</tr>
 				</c:forEach>
 			</tbody>

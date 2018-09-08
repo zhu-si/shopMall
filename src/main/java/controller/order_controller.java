@@ -67,25 +67,25 @@ public class order_controller {
 		return new jsonInfo(1, "");
 	} 
 	
-	@RequestMapping("delete")
-	protected String delete(int id, ModelMap m) {
-		rservice.delete(id);
-		return "redirect:def";
-	}
-	
-	@RequestMapping("deleteall")
-	protected String deleteall(String ids, ModelMap m) {
-		String[] strs = ids.split(",");
-		for (int i = 0; i < strs.length; i++) {
-			try {
-				int id = Integer.parseInt(strs[i]);
-				rservice.deleteall(id);
-			} catch (Exception e) {
-			}
-		}
-		return "redirect:def";
-	}
-	
+//	@RequestMapping("delete")
+//	protected String delete(int id, ModelMap m) {
+//		rservice.delete(id);
+//		return "redirect:def";
+//	}
+//	
+//	@RequestMapping("deleteall")
+//	protected String deleteall(String ids, ModelMap m) {
+//		String[] strs = ids.split(",");
+//		for (int i = 0; i < strs.length; i++) {
+//			try {
+//				int id = Integer.parseInt(strs[i]);
+//				rservice.deleteall(id);
+//			} catch (Exception e) {
+//			}
+//		}
+//		return "redirect:def";
+//	}
+//	
 	@RequestMapping("add")
 	protected String add(ModelMap m) {
 		return "orders/order_add";

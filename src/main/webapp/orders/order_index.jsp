@@ -30,7 +30,7 @@
 		window.parent.location.href = "../login.jsp";
 	}
  
-	/*订单-发货
+	订单-发货
 	function member_run(obj, id) {
 		layer.confirm('确认要操作吗？', function(index) {
 			if ($(obj).attr('title') == '发货') {
@@ -48,7 +48,7 @@
 				layer.msg('已取消!');
 			}
 		});
-	} */
+	} 
 </script>
 </head>
 
@@ -87,7 +87,7 @@
 					<th style="width:60px">应付金额</th>
 					<th style="width:330px">地址</th>
 					<th style="width:130px">用户</th>
-					<!-- <th>订单状态</th> -->
+					<th>订单状态</th>
 					<th>备注</th>
 					<th>操作</th>
 				</tr>
@@ -103,10 +103,10 @@
 						<th>${orders.nowamount}</th>
 						<th>${orders.zone}${orders.addr}</th>
 						<th>${orders.email}</th>
-						<!-- <th class="th-status"><span class="layui-btn layui-btn-normal layui-btn-mini">未发货</span></th> -->
+						<th class="th-status"><span class="layui-btn layui-btn-normal layui-btn-mini">未发货</span></th>
 						<th>${orders.comments}</th>
 						<td class="th-manage">
-							<!-- <a onclick="member_run(this,'10001')" href="javascript:;" title="发货"> <i class="layui-icon">&#xe601;</i></a> --> 
+							<a onclick="member_run(this,'10001')" href="javascript:;" title="发货"> <i class="layui-icon">&#xe601;</i></a> 
 							<a title="查看" href="javascript:search(${orders.id});"> <i class="layui-icon">&#xe63c;</i></a> 
 							<%-- <a title="删除" href="javascript:del(${orders.id})"><i class="layui-icon">&#xe640;</i></a> --%>
 						</td>

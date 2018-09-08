@@ -34,17 +34,14 @@
 
 <body >
 	<div class="x-body">
-	
-	<c:if test="${requestScope.info!=null}">
+		<c:if test="${requestScope.info!=null}">
 			<form class="layui-form" action="update" method="post">
-			<input type="hidden" name="id" value="${requestScope.info1.id}">
+			<input type="hidden" name="id" value="${requestScope.info.id}">
 		</c:if>
 		<c:if test="${requestScope.info==null}">
 			<form class="layui-form" action="insert" method="post">
 			<input type="hidden" name="parentid" value="${requestScope.parentid}">
 		</c:if>
-	
-
 			<div class="layui-form-item">
 				<label for="name" class="layui-form-label"> <span
 					class="x-red">*</span>类别名称:
@@ -53,9 +50,6 @@
 					<input type="text" name="name" value="${requestScope.info.name}" class="layui-input">
 				</div>
 			</div>
-			
-			
-			
 			<div class="layui-form-item">
 				<label for="L_repass" class="layui-form-label"> </label>
 				<button class="layui-btn" type="button" onclick="edit();">提交</button>
@@ -66,7 +60,9 @@
 	 //监听提交
     function edit() {
     	 $.post($(".layui-form").attr("action"),$(".layui-form").serialize(),function(json){
+    		 alert(11);
     			if(json.status>0){
+    				alert(json.text);
     				location.href="def";
     			}else{
     				var index=parent.layer.getFrameIndex(window.name);

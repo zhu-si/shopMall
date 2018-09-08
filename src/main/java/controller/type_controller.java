@@ -51,8 +51,9 @@ public class type_controller {
 	
 	@RequestMapping("update")
 	protected @ResponseBody jsonInfo update(type t) {
+		System.out.println(11111);
 		tservice.update(t);
-		return new jsonInfo(1, "");
+		return new jsonInfo(1, "ÐÞ¸Ä³É¹¦£¡");
 	} 
 	
 	@RequestMapping("delete")
