@@ -36,7 +36,6 @@
        				alert(json.text);
        				var index=parent.layer.getFrameIndex(window.name);
        				parent.layer.close(index);
-       				parent.fresh();
       			}else {
        				alert(json.text);
        				var index=parent.layer.getFrameIndex(window.name);
