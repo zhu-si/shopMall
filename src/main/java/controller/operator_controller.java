@@ -33,9 +33,9 @@ public class operator_controller {
 		oservice.insert(o);
 		operator oper = oservice.login(o);
 		if(oper != null) {
-			return new jsonInfo(1, "Ìí¼Ó³É¹¦");
+			return new jsonInfo(1, "æ·»åŠ æˆåŠŸï¼");
 		}else {
-			return new jsonInfo(0, "Ìí¼ÓÊ§°Ü");
+			return new jsonInfo(0, "æ·»åŠ å¤±è´¥ï¼");
 		}
 	} 
 	
@@ -48,30 +48,8 @@ public class operator_controller {
 	@RequestMapping("uppass")
 	protected @ResponseBody jsonInfo uppass(int id,String password) {
 		oservice.uppass(id);
-//		boolean pass = oservice.getId(id).equals(password);
-		return new jsonInfo(1, "ÃÜÂëÖØÖÃ³É¹¦£¡");
-		
+		return new jsonInfo(1, "ä¿®æ”¹æˆåŠŸ");
 	}
-	
-	
-//	@RequestMapping("delete")
-//	protected String delete(int id, ModelMap m) {
-//		oservice.delete(id);
-//		return "redirect:def";
-//	}
-//	
-//	@RequestMapping("deleteall")
-//	protected String deleteall(String ids, ModelMap m) {
-//		String[] strs = ids.split(",");
-//		for (int i = 0; i < strs.length; i++) {
-//			try {
-//				int id = Integer.parseInt(strs[i]);
-//				oservice.deleteall(id);
-//			} catch (Exception e) {
-//			}
-//		}
-//		return "redirect:def";
-//	}
 	
 	@RequestMapping("edit")
 	protected String edit(int id, ModelMap m) {
@@ -79,9 +57,8 @@ public class operator_controller {
 		return "operator/operator-edit";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("logins")
 	public String asas(operator o,String code,HttpSession session) {
-		
 		if(session.getAttribute("randomCode").toString().equalsIgnoreCase(code)) {
 			operator user=oservice.login(o);
 			if(user!=null) {
@@ -91,10 +68,10 @@ public class operator_controller {
 				session.setAttribute("id", oservice.login(o).getId());
 				return "index";
 			}else {
-				session.setAttribute("error", "ÓÃ»§ÃûÃÜÂë´íÎó£¡");
+				session.setAttribute("error", "ç”¨æˆ·åå¯†ç é”™è¯¯");
 			}
 		}else {
-			session.setAttribute("error", "ÑéÖ¤Âë´íÎó£¡");
+			session.setAttribute("error","éªŒè¯ç é”™è¯¯");
 		}
 		return "redirect:/login.jsp";
 		

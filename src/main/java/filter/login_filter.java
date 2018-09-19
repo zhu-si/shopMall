@@ -21,7 +21,7 @@ public class login_filter implements Filter {
 
 	public void doFilter(ServletRequest req1, ServletResponse resp1, FilterChain chain)
 			throws IOException, ServletException {
-		
+		System.out.println(11111111);
 		 HttpServletRequest req = (HttpServletRequest) req1;
 		 HttpServletResponse resp = (HttpServletResponse) resp1;
 		 HttpSession session = req.getSession();

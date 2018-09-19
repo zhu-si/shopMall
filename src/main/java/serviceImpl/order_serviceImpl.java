@@ -24,13 +24,13 @@ public class order_serviceImpl implements order_service{
 		rdao.insert(r);
 	}
 
-	public void delete(int id) {
-		rdao.delete(id);
-	}
-
-	public void deleteall(int id) {
-		rdao.deleteall(id);
-	}
+//	public void delete(int id) {
+//		rdao.delete(id);
+//	}
+//
+//	public void deleteall(int id) {
+//		rdao.deleteall(id);
+//	}
 
 	public Object getId(int id) {
 		return null;
@@ -38,6 +38,16 @@ public class order_serviceImpl implements order_service{
 
 	public List<orders> selectDate(String start, String end) {
 		return rdao.selectDate(start, end);
+	}
+
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteall(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -25,8 +25,6 @@ function changerimg(o){
 	o.src="rcode/img?a="+(a++);
 }
 
-
-
 </script>
 </head>
 <body class="login-bg">
@@ -35,7 +33,7 @@ function changerimg(o){
         <div class="message">ZHU SHOP 管理登录-${sessionScope.error}</div>
         <div id="darkbannerwrap"></div>
         
-        <form method="post" class="layui-form" action="operator_c/login">
+        <form method="post" class="layui-form" action="operator_c/logins">
             <input name="nike" placeholder="用户名"  type="text" required="" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input name="password" placeholder="密码"  type="password" class="layui-input">

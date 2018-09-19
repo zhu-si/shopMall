@@ -1,4 +1,4 @@
-package servlet;
+package utils;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -49,7 +49,6 @@ public class RandomCode extends HttpServlet {
 	  bos.close();  
 	  sos.close();  
 	  session.setAttribute("randomCode", new String(rands)); 
-	  System.out.println(111);
 	 }  
 	  
 	 private void drawBackground(Graphics g) {  

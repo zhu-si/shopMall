@@ -33,12 +33,12 @@ public class currentUser_controller {
 			if(password.equals(password1)) {
 				o.setPassword(password);
 				cservice.update(o);
-				return new jsonInfo(2, "ĞŞ¸Ä³É¹¦£¡");
+				return new jsonInfo(2, "ä¿®æ”¹æˆåŠŸ");
 			}else {
-				return new jsonInfo(1,"ĞÂÃÜÂë²»Ò»ÖÂ£¡");
+				return new jsonInfo(1,"æ–°å¯†ç ä¸ä¸€è‡´");
 			}
 		}else {
-			return new jsonInfo(0, "ÃÜÂë²»ÕıÈ·£¡");
+			return new jsonInfo(0, "åŸå¯†ç ä¸æ­£ç¡®");
 		}
 		
 	}
